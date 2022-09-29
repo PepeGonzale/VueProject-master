@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    .box{
+        background-color: purple;
+        height: 400px;
+    }
+   
+    [v-cloak]{
+        display:none;
+    }
+</style> 
+</head>
+
+<body>
+    <div id="grid">
+        <input v-model = "greeting"/>
+        <br>
+        <div class = "box">
+            {{greeting}}
+        </div>
+        <button @click = "counter++">
+            Click to increase the counter
+        </button>
+        El numero de veces que has clickado son: {{counter  }}
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const grid = Vue.createApp({
+            data(){
+                return {
+                    counter: 0,
+                    greeting: "Hola"
+                }
+            }
+        })
+        grid.mount('#grid')
+    </script>
+</body>
+</html>
