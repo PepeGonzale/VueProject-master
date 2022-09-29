@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo03</title>
+   <style>
+    .box{
+        background-color: purple;
+        height: 400px;
+    }
+   
+    [v-cloak]{
+        display:none;
+    }
+</style> 
+</head>
+
+<body>
+    <div id="grid">
+        <button @click = "toggleBox">Toggle Box</button>
+        <test-box v-if = "isVisible"/>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        let grid = Vue.createApp({
+            data(){
+                return {
+                    isVisible: false
+                }
+            },
+            methods: {
+                toggleBox: function() {
+                    this.isVisible = !this.isVisible
+                },
+              
+            },
+            updated() {
+                console.log('updated')
+            }
+           
+            })
+            grid.component('test-box', {
+                template: ` 
+                <div class = "box"></div>
+                `,
+                created() {
+                    console.log('created')
+                },
+                mounted() {
+                    console.log('mounted')
+                },
+                unmounted() {
+                    console.log('unmounted')
+                }
+            }
+        )
+        grid.mount('#grid')
+    
+    </script>
+</body>
+</html>
